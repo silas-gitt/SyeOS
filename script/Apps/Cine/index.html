@@ -37,31 +37,7 @@
             const newTab = window.open('about:blank', '_blank');
             
             if (newTab) {
-                const d = newTab.document;
-                d.body.style.margin = "0";
-                d.body.style.padding = "0";
-                d.body.style.height = "100vh";
-                d.body.style.width = "100vw";
-                d.body.style.overflow = "hidden";
-                d.body.style.background = "#000";
-                
-                d.title = "Google Drive"; 
-
-                d.body.innerHTML = `
-                    <div id="wrapper" style="width: 100vw; height: 100vh; background: #000; color: #fff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-sizing: border-box; padding: 20px;">
-                        <div style="color: #2ecc71; font-weight: bold; font-size: 24px; margin-bottom: 10px;">⚡ Streaming Node</div>
-                        <p style="color: #666; font-size: 14px; max-width: 360px; margin: 0 0 24px 0; line-height: 1.6;">
-                            Establishing stream pathways. Click below to load content permanently inside this masked context.
-                        </p>
-                        <button id="loadBtn" style="background: #2ecc71; border: none; color: #000; padding: 12px 32px; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; transition: 0.2s;">
-                            Load Platform
-                        </button>
-                    </div>
-                `;
-
-                d.getElementById('loadBtn').onclick = function() {
-                    newTab.location.replace("https://streamex.ws/home");
-                };
+                newTab.location.replace("https://streamex.ws");
             } else {
                 alert("Pop-up engine blocked! Please check browser address bar notification to allow execution.");
             }
