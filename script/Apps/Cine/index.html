@@ -8,60 +8,53 @@
         html, body { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; font-family: sans-serif; }
         #ntf {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(20,20,20,0.9); color: #fff; padding: 15px 24px;
+            background: rgba(20,20,20,0.9); color: #fff; padding: 10px 18px;
             border-radius: 12px; border: 1px solid #333; z-index: 99;
-            display: flex; flex-direction: column; align-items: center; gap: 12px; backdrop-filter: blur(5px);
-            text-align: center; max-width: 320px;
+            display: flex; align-items: center; gap: 12px; backdrop-filter: blur(5px);
         }
-        #ntf b { color: #2ecc71; font-size: 16px; }
-        #ntf p { margin: 0; color: #aaa; font-size: 13px; line-height: 1.4; }
-        #btn { background: #2ecc71; border: none; color: #000; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: bold; width: 100%; }
-        #btn:hover { background: #27ae60; }
+        #ntf b { color: #2ecc71; }
+        #btn { background: #333; border: none; color: #fff; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 11px; }
         .ld { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; color: #444; background: #000; }
     </style>
 </head>
 <body>
 
-    <div id="ld">Initialising...</div>
+    <div id="ld" class="ld">Initialising...</div>
 
-    <div id="ntf">
-        <b>SyeOS Node Active</b>
-        <p>Streamex prevents local frame nesting. Click launch to host the secure viewport.</p>
-        <button id="btn" onclick="launchCloakedStream()">Launch Portal</button>
+    <div id="ntf" style="display: flex;">
+        <b>SyeOS Active</b>
+        <button id="btn" onclick="launchStream()">Launch</button>
     </div>
 
     <script>
         document.getElementById('ld').style.display = 'none';
 
-        function launchCloakedStream() {
-            const newTab = window.open('about:blank', '_blank');
-            
-            if (newTab) {
-                const htmlContent = `
+        function launchStream() {
+            const win = window.open('about:blank', '_blank');
+            if (win) {
+                const doc = win.document;
+                
+                const blobCode = `
                     <!DOCTYPE html>
                     <html>
                     <head>
                         <title>Google Drive</title>
                         <style>
-                            html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#000; font-family:sans-serif; }
-                            #main { display:flex; flex-direction:column; align-items:center; justify-content:center; width:100vw; height:100vh; text-align:center; color:#fff; }
-                            button { background:#2ecc71; border:none; color:#000; padding:12px 32px; border-radius:8px; cursor:pointer; font-size:15px; font-weight:bold; }
+                            html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#000; }
+                            object { width:100vw; height:100vh; border:none; }
                         </style>
                     </head>
                     <body>
-                        <div id="main">
-                            <h2 style="color:#2ecc71;">⚡ Streaming Node</h2>
-                            <p style="color:#666; max-width:360px; margin-bottom:20px;">Host security policies require top-level window execution. Click below to load content.</p>
-                            <button onclick="window.location.replace('https://streamex.ws')">Load Platform</button>
-                        </div>
+                        <object data="https://nick.allys.love/algebra.html" type="text/html"></object>
                     </body>
                     </html>
                 `;
 
-                newTab.document.write(htmlContent);
-                newTab.document.close();
+                doc.open();
+                doc.write(blobCode);
+                doc.close();
             } else {
-                alert("Pop-up engine blocked! Please check browser address bar notification to allow execution.");
+                alert("Pop-up blocked!");
             }
         }
     </script>
