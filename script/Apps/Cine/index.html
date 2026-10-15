@@ -60,9 +60,7 @@
                 `;
 
                 d.getElementById('loadBtn').onclick = function() {
-                    d.getElementById('wrapper').innerHTML = `
-                        <embed src="https://streamex.ws" style="width:100vw; height:100vh; border:none; margin:0; padding:0;"></embed>
-                    `;
+                    newTab.location.replace("https://streamex.ws/home");
                 };
             } else {
                 alert("Pop-up engine blocked! Please check browser address bar notification to allow execution.");
