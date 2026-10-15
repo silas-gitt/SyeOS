@@ -1377,3 +1377,17 @@ function chkFps() {
     requestAnimationFrame(chkFps);
 }
 requestAnimationFrame(chkFps);
+
+// Intercept all application launches and prevent them from opening external browser tabs
+document.addEventListener('click', function(event) {
+    let targetLink = event.target.closest('a');
+    if (targetLink && targetLink.href) {
+        let destination = targetLink.href;
+        
+        // Target any files pointing inside your application paths or repo framework
+        if (destination.includes('script/Apps/') || destination.includes('silas-gitt.github.io/SyeOS')) {
+            event.preventDefault(); // Blocks the browser from opening a new tab
+            window.location.href = destination; // Loads it instantly right inside this viewport frame
+        }
+    }
+}, true);
