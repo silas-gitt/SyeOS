@@ -20,7 +20,12 @@
 </head>
 <body>
     <div id="ld">Initialising...</div>
-    <iframe id="ifr" allowfullscreen allow="autoplay; fullscreen; gamepad; microphone; camera"></iframe>
+    
+    <iframe id="ifr" 
+            allowfullscreen 
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+            allow="autoplay; fullscreen; gamepad; microphone; camera; clipboard-read; clipboard-write">
+    </iframe>
 
     <script>
         document.getElementById('ifr').src = "https://silas-gitt.github.io/GustBrowser/";
